@@ -1,0 +1,64 @@
+<section>
+	<div id="container">
+		<%= form_tag user_journals_path, id: "form_edit", method: :patch, remote: true do %> 
+			<%= hidden_field_tag :year,  @year%>
+		<%= hidden_field_tag :month,  @month %>
+		<table class="table container table-striped table-hover">
+			<thead>
+				<tr>
+					<th>日付</th>
+					<th>カテゴリ</th>
+					<th>金額</th>
+					<th>備考</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% @journals.each do |journal| %>
+				<%= fields_for "journals[]", journal do |fi| %>
+				<tr>
+				<%= fi.hidden_field :update, :value => false %>
+				<td class="col-xs-2"><%= fi.date_field :document_date, :class => "form-control datepicker"%></td>
+				<td class="col-xs-3"><%= fi.collection_select :category, @user.categories, :category, :category, :class => "form-control selectpicker"%></td>
+				<td class="col-xs-2"><%= fi.text_field :amount, :class => "integer form-control"%></td>
+				<td class="col-xs-5"><%= fi.text_field :remarks, :class => "form-control" %></td>
+				<td>
+					<%= link_to t('.destroy', :default => ("削除")),
+						user_journal_path(@user, journal),
+						:method=> :delete,
+						:remote => :true,
+						:data => { :confirm => '削除しますか?'},
+						:class => 'label label-danger'
+					%>
+				</td>
+				</tr>
+				<% end %>
+			<% end %>
+			<hr>
+				<tr class="info">
+					<td class="col-xs-5" colspan="2"><b>合計</b></td>
+					<td class="col-xs-7" colspan="3"><%= @sum %></td>
+					<td>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+
+			<%= submit_tag '保存', {:class => "btn btn-primary"} %>
+			<br>
+			<br>
+			<%= link_to t('.new', :default => ("レコード追加")),
+				new_user_journal_path(@user, :year => @year, :month => @month),
+				:action=> :new,
+				:remote=> :true,
+				:class => 'btn btn-default'
+			%>
+			<br>
+			<br>
+			<%= link_to '家計簿をまとめる',
+				user_merge_path(@user, :year => @year, :month => @month),
+				:data => { :confirm => '同じカテゴリと日付でレコードをまとめますか?'},
+				:class => "btn btn-default", 
+				remote: true %>
+			<% end %>
+			</div>
+		</section>

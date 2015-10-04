@@ -1,0 +1,210 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// カラー変数
+$baseBlack:     #333;
+$baseGray:      #aaa;
+$baseLightGray: #eee;
+$baseBlue:      #428bca;
+$baseLightBlue: #5bc0de;
+//$backColor:   #FDF5E6;
+$backColor:   black;
+$headerColor:        #FFFAF0;
+$footerSize:20px;
+/*-----------------------------
+
+　リセットCSS + サイト共通設定
+
+------------------------------*/
+body,
+h1,h2,h3,h4,h5,h6,
+p,ul,ol,dl,dt,dd,li,
+table,th,td,
+form,select,option,input
+address,pre,strong,em,iframe,img{
+  margin:0;
+  padding:0;
+  border:0;
+}
+
+/* デフォルト文字設定 */
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  color: $baseBlack;
+  background-color: #328c9f;
+  font-family: "Gotham Narrow SSm",Arial,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",Osaka,"メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic",sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+
+/* リストのマーカーを非表示 */
+ul, ol {
+  list-style-type:none;
+}
+
+/* デフォルトリンク色の設定 */
+a,
+a:-webkit-any-link {
+  text-decoration: none;
+
+  &:hover {
+    color: $baseLightBlue;
+  }
+}
+
+
+/*--------------------------
+
+　レイアウト
+
+---------------------------*/
+
+/* ページ全体のラッパー
+---------------------------*/
+#wrap {
+        position:relative;
+        margin:0 auto;
+        width: 100%;
+        height: auto !important;
+        min-height: calc(100vh - 2em);
+
+}
+
+/* ヘッダー
+---------------------------*/
+header {
+  .inner {
+    padding-left:10%;
+    height: 100px;
+    margin: 0 auto;
+    overflow:hidden;
+
+    #logo {
+      position: relative;
+      margin-top:10px;
+      font-size: 300%;
+      text-decoration: none;
+      font-style:bold;
+      //font-family: 'Waiting for the Sunrise', cursive;
+      font-family: 'Press Start 2P', cursive;
+
+      a {
+        color: white;
+      }
+    }
+
+    #catchcopy {
+      color: green;
+      font-size: 90%;
+      position: relative;
+      margin-top:10px;
+      left: 5px;
+    }
+  }
+}
+
+footer {
+        display:block;
+        text-align:center;
+        background-color:black;
+        color:white;
+        width:100%;
+        height: 2em;
+        position:absolute;
+}
+
+/* フラッシュメッセージ用
+---------------------------*/
+.notice {
+  color:skyblue;
+}
+.alert {
+  color:skyblue;
+}
+
+#proc-message {
+	display:none;
+	text-align:center;
+	width:200px;
+	z-index:9999;
+	position:fixed;
+	top:100px;
+}
+
+
+/* メインコンテンツ
+---------------------------*/
+#main {
+  width: 90%;
+  margin-top:30px;
+  padding: 30px;
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  padding-bottom:80px;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 200%;
+    margin-bottom: 20px;
+  }
+}
+
+
+/*-----------------------------
+
+　共通コンポーネント
+
+------------------------------*/
+input[type="text"],
+textarea {
+  border-radius: 3px;
+  border: 1px solid $baseGray; 
+}
+
+.inputNew
+{
+        border:none;
+        font-size:100%;
+        color: white;
+        text-align: center;
+        width: 55px;
+        height: 20px;
+        border-radius: 3px;
+        background-color:#FF99CC;
+        text-decoration: none;
+        display: block;
+
+        &:hover {
+                background-color: #EEEEEE;
+                color:$baseLightBlue;
+        }
+}
+
+//bootstrapで自動的に幅が指定されてしまうため、最大幅を100%で上書き
+.container {
+  max-width: 100%;
+  width:100%;
+}
+
+ul.pie_table {
+  text-align: center;
+  vertical-align:middle;
+  width:100%;
+  margin-bottom:10px;
+  font-size:20px;
+  display:block;
+
+  li.right{
+    float:right;
+  }
+  li.left{
+    float:left;
+  }
+}
+

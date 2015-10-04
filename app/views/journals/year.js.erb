@@ -1,0 +1,21 @@
+// グラフの再描画
+$("#pie_chart").html(
+	"<%= j(render :partial => 'pie_chart') %>"
+);
+
+// フォームの再描画
+$("#form_container").html(
+	"<%= j(render :partial => 'form') %>"
+);
+
+// タイトルの再描画
+$("#month_title").html(
+	"<%= j(render :partial => 'header') %>"
+);
+
+// date pickerの初期化
+$('.datepicker').datepicker();
+
+$('#proc-message').show();
+$('#proc-message').html("更新しました。");
+$('#proc-message').fadeOut(3000);

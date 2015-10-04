@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Household</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag '//www.google.com/jsapi', 'chartkick' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <%= render '/shared/header' %>
+  <body>
+    <div class="container">
+      <div id="main">
+        <div id="wrap">
+          <div class="row">
+            <%= yield %>
+						<p id="proc-message" class="alert alert-success" ></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

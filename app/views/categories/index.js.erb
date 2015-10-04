@@ -1,0 +1,8 @@
+// グラフの再描画
+$("#categories_form").html(
+	"<%= j(render :partial => 'editor') %>"
+);
+
+$('#proc-message').show();
+$('#proc-message').html("更新しました。");
+$('#proc-message').fadeOut(3000);

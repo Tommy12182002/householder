@@ -1,0 +1,52 @@
+<h3>新規カテゴリ</h3>
+<br>
+
+<%= form_for [@user, @user.categories.build], :remote => true  do |f| %>	
+	<%= f.text_field :category, :class => '' %>
+	<%= submit_tag "追加", :remote => true, :class => "btn btn-primary"%>
+<% end %>
+
+<hr>
+<h3>登録済みのカテゴリ</h3>
+<br>
+<p>既に使用されているカテゴリは編集できません。</p>
+<br>
+<table class="table container table-striped table-hover">
+	<thead>
+		<tr>
+			<th>内容</th>
+		</tr
+	</thead>
+	<tbody>
+	<%= form_tag user_categories_path, method: "patch", :remote => true do %>
+		<% @categories.each do |category| %>
+		<%= fields_for "categories[]", category do |f| %>
+			<tr>
+			<% if Journal.exists?(:user_id => category.user_id, :category => category.category) %>
+			<td class="col-xs-6">
+				<%= f.text_field :category, :class => "form-control form-category", :disabled => true %>
+			</td>
+			<td class="col-xs-6">
+			</td>
+		<% else %>
+			<td class="col-xs-6">
+				<%= f.text_field :category, :class => "form-control form-category" %>
+			</td>
+			<td class="col-xs-6">
+				<%= link_to t('.destroy', :default => ("削除")),
+					user_categories_path(@user, @category),
+					:method=> :delete,
+					:remote => :true,
+					:data => { :confirm => '削除しますか?'},
+					:class => 'label label-danger'
+				%>
+			<% end %>
+				</tr>
+	<% end %>
+	<% end %>
+		<%= submit_tag "保存",
+			:remote => true,
+			:class => "btn btn-primary"%>
+	<% end %>
+			</tbody>
+		</table>
