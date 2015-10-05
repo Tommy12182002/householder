@@ -54,8 +54,7 @@ class Journal < ActiveRecord::Base
     
     # カテゴリごとに集計する
     def self.summary_with_category(jours)
-			jours.reorder(:category)	
-      jours.group(:category).sum(:amount)
+      jours.reorder(:category).group(:category).sum(:amount)
     end
 
     # カテゴリ・日付が同じレコードをマージする 
